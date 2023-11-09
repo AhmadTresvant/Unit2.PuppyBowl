@@ -17,8 +17,6 @@ const getAllPlayers = async () => {
 
 const init = async () => {
   await getAllPlayers();
-  const eachPupOnRoster = document.querySelectorAll(`li`);
-  console.log(eachPupOnRoster);
 }
 
 const renderAllPlayers = (state) => {
