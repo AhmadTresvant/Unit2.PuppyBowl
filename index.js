@@ -12,7 +12,16 @@ const getAllPlayers = async () => {
   const response = await fetch(`${apiLink}/players`);
   const jsonResponse = await response.json();
   state.allPuppies = jsonResponse.data.players;
-  console.log(state.allPuppies);
+  renderAllPlayers(state);
+}
+
+const renderAllPlayers = (state) => {
+  const puppiesInLi = state.allPuppies.map((eachPup) => {
+    return `<li id="${eachPup.id}">${eachPup.name}</li>`;
+  });
+  const puppyRosterUl = document.createElement(`ul`);
+  puppyRosterUl.innerHTML = puppiesInLi.join('');
+  main.appendChild(puppyRosterUl);
 }
 
 getAllPlayers();
