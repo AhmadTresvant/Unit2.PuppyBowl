@@ -15,6 +15,12 @@ const getAllPlayers = async () => {
   renderAllPlayers(state);
 }
 
+const init = async () => {
+  await getAllPlayers();
+  const eachPupOnRoster = document.querySelectorAll(`li`);
+  console.log(eachPupOnRoster);
+}
+
 const renderAllPlayers = (state) => {
   const puppiesInLi = state.allPuppies.map((eachPup) => {
     return `<li id="${eachPup.id}">${eachPup.name}</li>`;
@@ -22,6 +28,26 @@ const renderAllPlayers = (state) => {
   const puppyRosterUl = document.createElement(`ul`);
   puppyRosterUl.innerHTML = puppiesInLi.join('');
   main.appendChild(puppyRosterUl);
+
+  const eachPupOnRoster = document.querySelectorAll('li');
+  eachPupOnRoster.forEach((pup) => {
+    pup.addEventListener('click', (event) => {
+      console.log(event.target);
+    });
+  });
 }
 
-getAllPlayers();
+init();
+
+const getAllPlayersDetails = async () => {
+  const response = await fetch(`${apiLink}/players`);
+  const jsonResponse = await response.json();
+  state.allPuppies = jsonResponse.data.players;
+  renderAllPlayers(state);
+}
+
+
+
+
+
+
