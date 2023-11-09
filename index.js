@@ -73,6 +73,33 @@ const getAllPlayersDetails = async () => {
   renderAllPlayers(state);
 }
 
+form.addEventListener(`submit`, async (event) => {
+  event.preventDefault();
+  
+  const nameInput = document.querySelector(`#name`);
+  const img = document.querySelector(`#img`);
+  const breed = document.querySelector(`#breed`);
+  const status = document.querySelector(`#status`);
+  console.log(nameInput.value);
+  
+  const response = await fetch(`${apiLink}/players`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      name: nameInput.value,
+      img: img.value,
+      breed: breed.value,
+      status: status.value
+    })
+  });
+  
+  const newPuppy = await response.json();
+  console.log(newPuppy);
+
+});
+
 
 
 
