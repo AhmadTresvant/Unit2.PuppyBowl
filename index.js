@@ -27,7 +27,9 @@ const getPuppyDetails = async (id) => {
 }
 
 const renderDetails = (puppyDetails) => {
-const html = `<h2>${puppyDetails.player.name}</h2
+const html = `
+<div>
+<h2>${puppyDetails.player.name}</h2
 
 <img src="${puppyDetails.player.imageUrl}" alt= "image of puppy"/>
 <p>ID:${puppyDetails.player.id}</p>
@@ -38,6 +40,7 @@ const html = `<h2>${puppyDetails.player.name}</h2
 <p>TEAM ID:${puppyDetails.player.teamId}</p>
 <p>COHORT ID:${puppyDetails.player.cohortId}</p>
 <button id="back-button" >Go Back To The Roster!</button>
+</div>
 `;
 main.innerHTML = html;
 
@@ -94,7 +97,7 @@ form.addEventListener(`submit`, async (event) => {
       status: status.value
     })
   });
-  
+
   const newPuppy = await response.json();
   console.log(newPuppy);
 
